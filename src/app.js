@@ -6,21 +6,32 @@ import "./assets/img/bg2.png";
 import "./assets/img/d.ico";
 
 window.onload = () => {
-  document.querySelector("#the-excuse").innerHTML = generateDomain();
+  document.querySelector("#the-excuse").innerHTML = generateDomains().join(
+    "<br>"
+  );
 
-  function generateDomain() {
+  function generateDomains() {
     let pronoun = ["the", "our"];
     let adj = ["great", "big"];
     let noun = ["jogger", "racoon"];
     let domain = [".com", ".es", ".cl", ".ar", ".net", ".io"];
 
-    let pronounIndx = Math.floor(Math.random() * pronoun.length);
-    let adjIndx = Math.floor(Math.random() * adj.length);
-    let nounIndx = Math.floor(Math.random() * noun.length);
+    // Elegir un dominio al azar para todos los nombres
     let domainIndx = Math.floor(Math.random() * domain.length);
+    let selectedDomain = domain[domainIndx];
 
-    return (
-      pronoun[pronounIndx] + adj[adjIndx] + noun[nounIndx] + domain[domainIndx]
-    );
+    let domains = [];
+
+    for (let i = 0; i < 10; i++) {
+      let pronounIndx = Math.floor(Math.random() * pronoun.length);
+      let adjIndx = Math.floor(Math.random() * adj.length);
+      let nounIndx = Math.floor(Math.random() * noun.length);
+
+      let newDomain =
+        pronoun[pronounIndx] + adj[adjIndx] + noun[nounIndx] + selectedDomain;
+      domains.push(newDomain);
+    }
+
+    return domains;
   }
 };
