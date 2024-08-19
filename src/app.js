@@ -16,20 +16,20 @@ window.onload = () => {
     let noun = ["jogger", "racoon"];
     let domain = [".com", ".es", ".cl", ".ar", ".net", ".io"];
 
-    // Elegir un dominio al azar para todos los nombres
+    let domains = [];
+
+    // Elegir un dominio al azar
     let domainIndx = Math.floor(Math.random() * domain.length);
     let selectedDomain = domain[domainIndx];
 
-    let domains = [];
-
-    for (let i = 0; i < 10; i++) {
-      let pronounIndx = Math.floor(Math.random() * pronoun.length);
-      let adjIndx = Math.floor(Math.random() * adj.length);
-      let nounIndx = Math.floor(Math.random() * noun.length);
-
-      let newDomain =
-        pronoun[pronounIndx] + adj[adjIndx] + noun[nounIndx] + selectedDomain;
-      domains.push(newDomain);
+    // Generar combinaciones solo para el dominio seleccionado
+    for (let p of pronoun) {
+      for (let a of adj) {
+        for (let n of noun) {
+          let newDomain = p + a + n + selectedDomain;
+          domains.push(newDomain);
+        }
+      }
     }
 
     return domains;
